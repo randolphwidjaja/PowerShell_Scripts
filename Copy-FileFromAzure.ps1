@@ -28,7 +28,7 @@ Invoke-WebRequest "https://***.blob.core.windows.net/***/npp.7.7.1.Installer.exe
 
   # This code schedules the currently running script to restart and forward to a given checkpoint:
   schtasks.exe /create /tn "HeadlessRestartTask" /ru *** /sc ONSTART /tr "powershell.exe Start-Process -filepath $PostInstallationScriptLocation\Copy-FileFromAzure.ps1 -SkipToPhaseTwo"
-  Write-Host "RWIVMPostDeployment Installation script is scheduled to run once after reboot."
+  Write-Host "Copy-FileFromAzure.ps1 Installation script is scheduled to run once after reboot."
   "HeadlessRestartTask scheduler succesfully created" | Timestamp |  Out-File -FilePath $OutputResult -Append
 
 
