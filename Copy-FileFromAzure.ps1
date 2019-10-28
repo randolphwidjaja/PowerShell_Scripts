@@ -49,11 +49,12 @@ If (!$SkipToPhaseTwo)
 
 		Install-WindowsFeature Net-Framework-Core -source "C:\WindowsAzure\Applications\"
 		Get-WindowsFeature | Where {$_.DisplayName -eq ".NET Framework 3.5 (includes .NET 2.0 and 3.0)"} | Out-File -FilePath $OutputResult -Append
+		".NET Framework 3.5 (includes .NET 2.0 and 3.0) installation finished" | Timestamp | Out-File -FilePath $OutputResult -Append
 	  } 
 	Else
 	  {
 		Get-WindowsFeature | Where {$_.DisplayName -eq ".NET Framework 3.5 (includes .NET 2.0 and 3.0)"} | Out-File -FilePath $OutputResult -Append
-		".NET Framework 3.5 (includes .NET 2.0 and 3.0) Installed" | timestamp |  Out-File -FilePath $OutputResult -Append
+		".NET Framework 3.5 (includes .NET 2.0 and 3.0) installation found, skipping" | timestamp |  Out-File -FilePath $OutputResult -Append
 	  }
 		
 		
@@ -62,7 +63,7 @@ If (!$SkipToPhaseTwo)
 
 
 # PhaseTwo Script run
-"The system has been restarted, script continuing..." | Timestamp | Out-File -FilePath $OutputResult -Append
+"The system restarted after executing part 1, script continuing..." | Timestamp | Out-File -FilePath $OutputResult -Append
 
 # self-delete the scheduled task
 Start-Process schtasks.exe -ArgumentList "/delete /f /tn HeadlessRestartTask" -Wait -PassThru
