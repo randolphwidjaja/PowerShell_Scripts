@@ -1,13 +1,13 @@
 <# Custom Script for Windows to install a file from Azure Storage using the staging folder created by the deployment script #>
-# Description: 	Script for installation 3rd party and Roles/feature software
-# Version:		003
-# Date:			28-10-2019
-# Company:		Centric
-# Created:  	Randolph Widjaja 
-# Orginal files:https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-custom-script-windows 
-# Email:		randolph.widjaja@centric.eu
+# Description: 		Script for installation 3rd party and Roles/feature software
+# Version:			003
+# Date:				28-10-2019
+# Company:			Centric
+# Created:  		Randolph Widjaja 
+# Orginal files:	https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-custom-script-windows 
+# Email:			randolph.widjaja@centric.eu
 
-
+# Script location
 $PostInstallationScriptLocation = "C:\Packages\Plugins\Microsoft.Compute.CustomScriptExtension\1.9.5\Downloads\0\"
 
 # Output Installation Status
@@ -22,8 +22,8 @@ If (!$SkipToPhaseTwo)
   
 	"Script started successfully" | Timestamp |  Out-File -FilePath $OutputResult -Append
     
-	Invoke-WebRequest "https://***.blob.core.windows.net/***/microsoft-windows-netfx3-ondemand-package.cab" -OutFile "C:\WindowsAzure\Applications\microsoft-windows-netfx3-ondemand-package.cab"
-	Invoke-WebRequest "https://***.blob.core.windows.net/***/npp.7.7.1.Installer.exe" -OutFile "C:\WindowsAzure\Applications\npp.7.7.1.Installer.exe"
+	Invoke-WebRequest "https://***.blob.core.windows.net/rwicontainer01/microsoft-windows-netfx3-ondemand-package.cab" -OutFile "C:\WindowsAzure\Applications\microsoft-windows-netfx3-ondemand-package.cab"
+	Invoke-WebRequest "https://***.blob.core.windows.net/rwicontainer01/npp.7.7.1.Installer.exe" -OutFile "C:\WindowsAzure\Applications\npp.7.7.1.Installer.exe"
 
 
 	# A task is created that starts the script after reboot and forward to the second part of the script.
