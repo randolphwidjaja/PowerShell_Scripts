@@ -65,7 +65,7 @@ If (!$SkipToPhaseTwo)
 # PhaseTwo Script run
 "The system restarted after executing part 1, script continuing..." | Timestamp | Out-File -FilePath $OutputResult -Append
 
-# self-delete the scheduled task
+# Auto-delete the scheduled task
 Start-Process schtasks.exe -ArgumentList "/delete /f /tn HeadlessRestartTask" -Wait -PassThru
 
 # Install Notepad++ part Two
